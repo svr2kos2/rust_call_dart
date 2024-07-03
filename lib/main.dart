@@ -12,6 +12,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    callback_test();
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: const Text('flutter_rust_bridge quickstart')),
@@ -21,5 +24,13 @@ class MyApp extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void callback_test() async {
+    await rustFunction(
+      dartCallback: (name) {
+        print("From rust: $name"); 
+        return "Hello, $name";
+      });
   }
 }
